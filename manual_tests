@@ -55,7 +55,7 @@ aa==vv
 < infile
 
 # Pode ter um tab antes do nome do arquivo
-cat <		./tests/test_files/infile
+cat <		./test_files/infile
 
 # Checar se não cria processos zumbi
 echo "hi" | cat | cat | cat | cat | cat | cat | cat
@@ -76,27 +76,27 @@ grep oi | ls # testar dando depois:
 #- Ctrl+C ✅
 #- "oi" + Enter + Ctrl+\ ✅
 
-./tests/test_files/loop # finalizar com:
+./test_files/loop # finalizar com:
 #- Ctrl+C ✅
 #- Ctrl+\ ✅  -> workspaces: ^\Quit\n
 #- Ctrl+D ✅  -> não faz nada
 
-./tests/test_files/loop.out | ls
+./test_files/loop.out | ls
 # finalizar com:
 #- Ctrl+C ✅
 #- Ctrl+\ ✅
 #- Ctrl+D ✅
 
-ls | ./tests/test_files/loop.out
+ls | ./test_files/loop.out
 # finalizar com:
 #- Ctrl+C ✅
 #- Ctrl+\ ✅
 #- Ctrl+D ✅
 
-chmod 000 ./tests/test_files/invalid_permission
-cat ./tests/test_files/invalid_permission ✅
+chmod 000 ./test_files/invalid_permission
+cat ./test_files/invalid_permission ✅
 
-cat <"./tests/test_files/infile" | echo hi | echo bye | echo bon | echo jour ✅
+cat <"./test_files/infile" | echo hi | echo bye | echo bon | echo jour ✅
 
 # Checar se precisamos lidar com pipe no final da linha que pede mais comandos
 # ex:
@@ -104,7 +104,7 @@ ls | ❌
 
 export UNO=1 DOS-2 TRES=3
 
-echo hi <missing | echo bye >./tests/test_files/invalid_permission
+echo hi <missing | echo bye >./test_files/invalid_permission
 
 # não precisa ser igual ao bash
 <<<

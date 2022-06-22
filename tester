@@ -1,11 +1,13 @@
 #!/bin/bash
 
+MINISHELL_PATH="../minishell"
+
 test_lists=(
 	"builtins"
 	"pipes"
 	"redirects"
 	"syntax"
-	# "extras"
+	"extras"
 	# "bonus"
 )
 
@@ -17,15 +19,32 @@ BLUE="\033[0;36m"
 RED="\e[0;31m"
 END="\033[0m"
 
-chmod 000 ./tests/test_files/invalid_permission
-mkdir ./tests/outfiles
-mkdir ./tests/mini_outfiles
-mkdir ./tests/bash_outfiles
+chmod 000 ./test_files/invalid_permission
+mkdir ./outfiles
+mkdir ./mini_outfiles
+mkdir ./bash_outfiles
 
 printf $YELLOW
-printf "\n****************** MINISHELL TESTER ******************\n\n"
+echo " 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥";
+echo " ██    ██ █ ██    █ █ █████ █   █ █████ █     █       ██████ █████ █████ ██████ █████ █████  ";
+echo " ███  ███ █ ███   █ █ █     █   █ █     █     █         ██   █     █       ██   █     █   ██ ";
+echo " █ ████ █ █ █ ██  █ █ █████ █████ ████  █     █         ██   ████  █████   ██   ████  █████  ";
+echo " █  ██  █ █ █  ██ █ █     █ █   █ █     █     █         ██   █         █   ██   █     █   ██ ";
+echo " █      █ █ █   ███ █ █████ █   █ █████ █████ █████     ██   █████ █████   ██   █████ █   ██ ";
+echo "                                                                                                                         ";
 
-PROMPT=$(echo -e "\nexit\n" | ./minishell | head -n 1 | sed -r "s:\x1B\[[0-9;]*[mK]::g")
+
+echo "   *      (         )   (      (         )         (      (                       (                     (     ";
+echo " (  \`     )\ )   ( /(   )\ )   )\ )   ( /(         )\ )   )\ )      *   )         )\ )    *   )         )\ )  ";
+echo " )\))(   (()/(   )\()) (()/(  (()/(   )\())  (    (()/(  (()/(    \` )  /(   (    (()/(  \` )  /(   (    (()/(  ";
+echo "((_)()\   /(_)) ((_)\   /(_))  /(_)) ((_)\   )\    /(_))  /(_))    ( )(_))  )\    /(_))  ( )(_))  )\    /(_)) ";
+echo "(_()((_) (_))    _((_) (_))   (_))    _((_) ((_)  (_))   (_))     (_(_())  ((_)  (_))   (_(_())  ((_)  (_))   ";
+echo "|  \/  | |_ _|  | \| | |_ _|  / __|  | || | | __| | |    | |      |_   _|  | __| / __|  |_   _|  | __| | _ \  ";
+echo "| |\/| |  | |   | .\` |  | |   \__ \  | __ | | _|  | |__  | |__      | |    | _|  \__ \    | |    | _|  |   /  ";
+echo "|_|  |_| |___|  |_|\_| |___|  |___/  |_||_| |___| |____| |____|     |_|    |___| |___/    |_|    |___| |_|_\  ";
+echo "                                                                                                              ";
+
+PROMPT=$(echo -e "\nexit\n" | $MINISHELL_PATH | head -n 1 | sed -r "s:\x1B\[[0-9;]*[mK]::g")
 
 for testfile in ${test_lists[*]}; do
 
@@ -41,29 +60,30 @@ for testfile in ${test_lists[*]}; do
 			continue
 		fi
 
-		rm -rf ./tests/outfiles/*
-		rm -rf ./tests/mini_outfiles/*
-		MINI_OUTPUT=$(echo -e "$teste" | ./minishell 2> /dev/null | sed -r "s:\x1B\[[0-9;]*[mK]::g" | grep -v "$PROMPT" | grep -v ^exit$ )
-		MINI_OUTFILES=$(cp ./tests/outfiles/* ./tests/mini_outfiles &>/dev/null)
-		MINI_EXIT_CODE=$(echo -e "./minishell\n$teste\necho \$?\nexit\n" | ./minishell 2> /dev/null | sed -r "s:\x1B\[[0-9;]*[mK]::g" | grep -v "$PROMPT" | grep -v ^exit$ | tail -n 1)
-		MINI_ERROR_MSG=$(echo "$teste" | ./minishell 2>&1 > /dev/null | grep -o '[^:]*$' )
+		rm -rf ./outfiles/*
+		rm -rf ./mini_outfiles/*
+		MINI_OUTPUT=$(echo -e "$teste" | $MINISHELL_PATH 2> /dev/null | sed -r "s:\x1B\[[0-9;]*[mK]::g" | grep -v "$PROMPT" | grep -v ^exit$ )
+		MINI_OUTFILES=$(cp ./outfiles/* ./mini_outfiles &>/dev/null)
+		MINI_EXIT_CODE=$(echo -e "$MINISHELL_PATH\n$teste\necho \$?\nexit\n" | $MINISHELL_PATH 2> /dev/null | sed -r "s:\x1B\[[0-9;]*[mK]::g" | grep -v "$PROMPT" | grep -v ^exit$ | tail -n 1)
+		MINI_ERROR_MSG=$(echo "$teste" | $MINISHELL_PATH 2>&1 > /dev/null | grep -o '[^:]*$' )
 
-		rm -rf ./tests/outfiles/*
-		rm -rf ./tests/bash_outfiles/*
+		rm -rf ./outfiles/*
+		rm -rf ./bash_outfiles/*
 		BASH_OUTPUT=$(bash -c "$teste" 2> /dev/null)
 		BASH_EXIT_CODE=$(echo $?)
-		BASH_OUTFILES=$(cp ./tests/outfiles/* ./tests/bash_outfiles &>/dev/null)
+		BASH_OUTFILES=$(cp ./outfiles/* ./bash_outfiles &>/dev/null)
 		BASH_ERROR_MSG=$(bash -c "$teste" 2>&1 > /dev/null | grep -o '[^:]*$' | head -n1)
 
-		OUTFILES_DIFF=$(diff --brief ./tests/mini_outfiles ./tests/bash_outfiles)
+		OUTFILES_DIFF=$(diff --brief ./mini_outfiles ./bash_outfiles)
 
 		printf $BLUE
 		printf "Test %3s: " $i
 		if [[ "$MINI_OUTPUT" == "$BASH_OUTPUT" && "$MINI_EXIT_CODE" == "$BASH_EXIT_CODE" && "$MINI_ERROR_MSG" == "$BASH_ERROR_MSG"  && -z "$OUTFILES_DIFF" ]]; then
 			printf ✅
 			((ok++))
-		elif [ "$MINI_ERROR_MSG" != "$BASH_ERROR_MSG" ]; then
-			printf ⚠️
+			if [ "$MINI_ERROR_MSG" != "$BASH_ERROR_MSG" ]; then
+				printf ⚠️
+			fi
 		else
 			printf ❌
 		fi
@@ -72,9 +92,9 @@ for testfile in ${test_lists[*]}; do
 		if [ "$OUTFILES_DIFF" ]; then
 			echo "$OUTFILES_DIFF"
 			echo mini outfiles:
-			cat ./tests/mini_outfiles/*
+			cat ./mini_outfiles/*
 			echo bash outfiles:
-			cat ./tests/bash_outfiles/*
+			cat ./bash_outfiles/*
 		fi
 		if [ "$MINI_OUTPUT" != "$BASH_OUTPUT" ]; then
 			echo mini output = \($MINI_OUTPUT\)
@@ -93,13 +113,13 @@ for testfile in ${test_lists[*]}; do
 		if [[ $1 && $1 -eq $i ]]; then
 			exit 0
 		fi
-	done < tests/$testfile
+	done < $testfile
 done
 
-chmod 666 ./tests/test_files/invalid_permission
-rm -rf ./tests/outfiles/*
-rm -rf ./tests/mini_outfiles
-rm -rf ./tests/bash_outfiles
+chmod 666 ./test_files/invalid_permission
+rm -rf ./outfiles
+rm -rf ./mini_outfiles
+rm -rf ./bash_outfiles
 
 printf $PURPLE
 printf $BOLD
