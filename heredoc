@@ -1,0 +1,35 @@
+cat <<HEREDOC
+oi
+HEREDOC
+
+cat <<HERE <<DOC
+oi
+HERE
+time
+DOC
+
+cat <<HERE | ls
+oi
+HERE
+
+cat <<HERE
+$USER
+oi
+HERE
+
+cat <minishell.h <<HERE <missing | ls
+HERE
+
+cat <minishell.h <<HERE | cat
+HERE
+
+cat <minishell.h <<HERE <missing <<DOC | echo oi
+HERE
+DOC
+
+cat << $ ✅
+oi
+$
+
+<< echo oi ✅
+echo

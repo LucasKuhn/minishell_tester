@@ -1,0 +1,4 @@
+env | sort | grep -v SHLVL | grep -v ^_=
+export | sort | grep -v SHLVL | grep -v "declare -x _=" | grep -v "PS.="
+cat ./tests/test_files/infile_big | grep oi
+cat minishell.h | grep ");"$

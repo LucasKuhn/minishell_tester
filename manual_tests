@@ -1,0 +1,130 @@
+echo - "" "" "" "" - ❌
+echo -n hello ✅
+
+# PLATAFORM SPECIFIC - This has different results in diferent bashes
+unset HELLO=
+
+CTRL+C ✅
+CTRL+D ✅
+CTRL+\ ✅
+CTRL+C, CTRL+C, CTRL+C, exit ✅
+CTRL+C, CTRL+C, CTRL+C, Ctrl+D ✅
+
+env
+env hello world # -> We need to implement "env with no options or arguments", the output here is optional
+
+# mudança de valor de variável existente ✅
+export HELLO=123
+export HELLO="beautiful world"
+
+unset  A- # diferente no mac e no workspaces ❌
+export HELLO=123 A- WORLD=456 # => cria a primeira variável e retorna exit status = 1 ❌
+unset  HELLO A- WORLD # => cria a primeira variável e retorna exit status = 1 ❌
+
+export hello # => não é para criar a variável na env ✅
+#porém, quando dá o comando export apenas, hello aparece...
+# para testar:
+export hello
+env | grep hello
+export | grep hello
+
+cd # Not mandatory, we need to imlement only "cd with only a relative or absolute path"
+cd obj, echo $PWD $OLDPWD
+
+env | grep USER || grep lucas # não tem que implementar o ||
+# verificar check de um caminho que é um link simbólico (por exemplo, um fd de um processo) - se a stat funciona ou precisaria usar a lstat
+# executar ./loop.c e verificar o exit code
+#cat <<doc1 | tr a b | <<doc2 ls
+
+# exit status quando roda um comando inválido e logo em seguida roda um espaço
+oi
+
+echo $?
+
+#exit status quando roda um comando invalido e logo em seguida expande uma variável vazia
+asd; $HELLO; echo $?
+
+#Testar se o worskpaces tem OLD_PWD setado
+# mv, cp, rm
+
+cat minishell.h | grep $");" # não precisa ser igual ao do bash porque só temos que lidar com o $ como expansão de variável
+
+#extra: variáveis locais
+aa==vv
+
+< infile
+
+# Pode ter um tab antes do nome do arquivo
+cat <		./tests/test_files/infile
+
+# Checar se não cria processos zumbi
+echo "hi" | cat | cat | cat | cat | cat | cat | cat
+# em outra janela
+ps -a
+
+cat | ls # testar dando depois:
+#- Enter ✅
+#- Ctrl+D ✅
+#- Ctrl+\ ✅
+#- Ctrl+C ✅
+
+grep oi | ls # testar dando depois:
+#- Enter + Ctrl+D ✅
+#- Ctrl+D ✅
+#- "oi" + Enter + Ctrl+D ✅
+#- Ctrl+\ ✅
+#- Ctrl+C ✅
+#- "oi" + Enter + Ctrl+\ ✅
+
+./tests/test_files/loop # finalizar com:
+#- Ctrl+C ✅
+#- Ctrl+\ ✅  -> workspaces: ^\Quit\n
+#- Ctrl+D ✅  -> não faz nada
+
+./tests/test_files/loop.out | ls
+# finalizar com:
+#- Ctrl+C ✅
+#- Ctrl+\ ✅
+#- Ctrl+D ✅
+
+ls | ./tests/test_files/loop.out
+# finalizar com:
+#- Ctrl+C ✅
+#- Ctrl+\ ✅
+#- Ctrl+D ✅
+
+chmod 000 ./tests/test_files/invalid_permission
+cat ./tests/test_files/invalid_permission ✅
+
+cat <"./tests/test_files/infile" | echo hi | echo bye | echo bon | echo jour ✅
+
+# Checar se precisamos lidar com pipe no final da linha que pede mais comandos
+# ex:
+ls | ❌
+
+export UNO=1 DOS-2 TRES=3
+
+echo hi <missing | echo bye >./tests/test_files/invalid_permission
+
+# não precisa ser igual ao bash
+<<<
+<<<<
+> '
+> * --> dando segfault
+>> * --> dando segfault
+< * --> dando segfault
+<< * ✅
+
+cat <<HERE '
+# comportamento a escolha de como decidiu lidar com aspas abertas
+
+> ?
+
+echo oi | invalid_command | ls
+
+# não vemos como problema a ordem de check de erro de sintaxe
+echo oi |    |  < >>
+echo oi |  < >>   |  |
+
+
+echo oi |    |

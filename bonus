@@ -1,0 +1,15 @@
+export UNO=1 DOS-2 TRES=3 || env | grep TRES
+ls >outfile01 && cat outfile01
+cat <minishell.h&ls
+||
+|| echo oi
+&
+&&
+|& #-> não precisa
+*
+> *
+>> *
+> & # valido para < e >>
+> &&
+> ||
+echo oi || echo tchau
