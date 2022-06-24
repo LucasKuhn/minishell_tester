@@ -18,6 +18,7 @@ fi
 
 # Ignore "broken pipe" error on CI
 trap - SIGPIPE
+trap -- '' PIPE
 
 BOLD="\e[1m"
 YELLOW="\033[0;33m"
