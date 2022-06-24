@@ -22,13 +22,13 @@ echo $?HELLO
 pwd
 pwd oi
 export hello
-export HELLO=123 | env | grep HELLO
 export HELLO=123
 export A-
 export HELLO=123 A
 export HELLO="123 A-"
 export hello world
 export HELLO-=123
+export GHOST=123 | env | grep GHOST
 unset
 unset HOME
 unset HELLO
@@ -45,4 +45,3 @@ exit 9223372036854775808
 exit -9223372036854775807
 exit -9223372036854775808
 exit -9223372036854775809
-
