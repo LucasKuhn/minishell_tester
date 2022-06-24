@@ -60,7 +60,7 @@ for testfile in ${test_lists[*]}; do
 
 		rm -rf ./outfiles/*
 		rm -rf ./bash_outfiles/*
-		BASH_OUTPUT=$(bash -c "$teste" 2> /dev/null)
+		BASH_OUTPUT=$(echo -e "$teste" | bash 2> /dev/null)
 		BASH_EXIT_CODE=$(echo $?)
 		BASH_OUTFILES=$(cp ./outfiles/* ./bash_outfiles &>/dev/null)
 		BASH_ERROR_MSG=$(bash -c "$teste" 2>&1 > /dev/null | grep -o '[^:]*$' | head -n1)

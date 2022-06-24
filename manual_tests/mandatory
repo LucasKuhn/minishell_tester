@@ -20,3 +20,5 @@ echo $?
 # Check zombie process ✅
 echo "hi" | cat | cat | cat | cat | cat | cat | cat
 ps -a
+
+echo - "" "" "" "" -
