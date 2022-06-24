@@ -16,10 +16,6 @@ else
 	)
 fi
 
-# Ignore "broken pipe" error on CI
-trap - SIGPIPE
-trap -- '' PIPE
-
 BOLD="\e[1m"
 YELLOW="\033[0;33m"
 GREY="\033[38;5;244m"
@@ -67,7 +63,7 @@ for testfile in ${test_lists[*]}; do
 		BASH_OUTPUT=$(echo -e "$teste" | bash 2> /dev/null)
 		BASH_EXIT_CODE=$(echo $?)
 		BASH_OUTFILES=$(cp ./outfiles/* ./bash_outfiles &>/dev/null)
-		BASH_ERROR_MSG=$(echo "$teste" | bash 2>&1 > /dev/null | grep -o '[^:]*$' | head -n1)
+		BASH_ERROR_MSG=$(trap "" PIPE ; echo "$teste" | bash 2>&1 > /dev/null | grep -o '[^:]*$' | head -n1)
 
 		OUTFILES_DIFF=$(diff --brief ./mini_outfiles ./bash_outfiles)
 
