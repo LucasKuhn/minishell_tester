@@ -1,0 +1,80 @@
+{
+   <Readline>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:readline
+   ...
+}
+{
+   <Readline>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   ...
+   fun:readline
+   ...
+}
+{
+   <Readline/AddHistory>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:add_history
+   ...
+}
+{
+   <Readline>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:load_history
+   ...
+}
+{
+   <Readline>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:yyparse
+   ...
+}
+{
+   <Readline>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:*rl_*
+   ...
+}
+{
+   <Bash>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:copy_command
+   ...
+}
+{
+   <Bash>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:initialize_job_control
+   ...
+}
+{
+   <Bash>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:execute_command_internal
+   ...
+}
+{
+   <Bash>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:initialize_shell_variables
+   ...
+}
