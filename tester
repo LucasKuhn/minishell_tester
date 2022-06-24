@@ -2,14 +2,19 @@
 
 MINISHELL_PATH="../minishell"
 
-test_lists=(
-	"builtins"
-	"pipes"
-	"redirects"
-	"syntax"
-	"extras"
-	# "bonus"
-)
+# Exit after specific test on single-test mode
+if [[ $1 && $1 -eq "all" ]]; then
+	test_lists=(
+		$1
+	)
+else
+	test_lists=(
+		"builtins"
+		"pipes"
+		"redirects"
+		"extras"
+	)
+fi
 
 BOLD="\e[1m"
 YELLOW="\033[0;33m"
@@ -44,13 +49,7 @@ for testfile in ${test_lists[*]}; do
 	echo ———————————— $testfile
 
 	while read teste; do
-
 		((i++))
-
-		# Skip lines on singe-test mode
-		if [[ $1 && $1 -ne $i ]]; then
-			continue
-		fi
 
 		rm -rf ./outfiles/*
 		rm -rf ./mini_outfiles/*
@@ -80,7 +79,6 @@ for testfile in ${test_lists[*]}; do
 			printf ❌
 		fi
 		printf "$GREY $teste \n$END"
-
 		if [ "$OUTFILES_DIFF" ]; then
 			echo "$OUTFILES_DIFF"
 			echo mini outfiles:
@@ -99,11 +97,6 @@ for testfile in ${test_lists[*]}; do
 		if [ "$MINI_ERROR_MSG" != "$BASH_ERROR_MSG" ]; then
 			echo mini error = \($MINI_ERROR_MSG\)
 			echo bash error = \($BASH_ERROR_MSG\)
-		fi
-
-		# Exit after specific test on single-test mode
-		if [[ $1 && $1 -eq $i ]]; then
-			exit 0
 		fi
 	done < $testfile
 done
