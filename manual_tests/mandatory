@@ -1,0 +1,22 @@
+echo -n hello ✅
+
+# change env variable value ✅
+export HELLO=123
+export HELLO="beautiful world"
+
+cd obj ✅
+echo $PWD $OLDPWD
+
+# invalid command + empty input + get exit code ✅
+oi
+
+echo $?
+
+#invalid command + empty variable + get exit code ✅
+asd
+$EMPTY
+echo $?
+
+# Check zombie process ✅
+echo "hi" | cat | cat | cat | cat | cat | cat | cat
+ps -a

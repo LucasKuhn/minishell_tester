@@ -1,0 +1,27 @@
+# test1
+env hello world # -> We need to implement "env with no options or arguments", the output here is optional
+
+# test2
+export hello
+env | grep hello
+export | grep hello
+
+# cd tests
+cd # Not mandatory, we need to imlement only "cd with only a relative or absolute path"
+cd ~
+
+unset HOME
+cd ~
+
+#extra: variáveis locais
+aa==vv
+
+ls |
+
+# não precisa ser igual ao bash
+<<<
+<<<<
+> '
+
+echo oi |    |  < >>
+echo oi |  < >>   |  |
