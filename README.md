@@ -32,13 +32,20 @@ You can also call `tester` + `test_file` to run only a specific part of the test
 ./tester extras 
 ```
 
+# Manual tests 
+The tester does **not** test everything. We added some suggestions of manual test in the [manual_tests](manual_tests) folder
+- [heredoc](manual_tests/heredoc)
+- [signals](manual_tests/signals)
+- [mandatory](manual_tests/mandatory)
+- [not_mandatory](manual_tests/not_mandatory)
+
 # Extra tests
 We decided to leave out some tests from the mandatory part, things like syntax errors and OS specific code.
 <p align="center">
   <img width="800" alt="Screen Shot 2022-06-26 at 10 40 18 AM" src="https://user-images.githubusercontent.com/26127185/175816956-d7358f24-6498-4c53-932f-183c9f0bd1ba.png">
 </p>
 
-You can run these tests like any other separate test:
+You can run them like any other separate test:
 ```sh
 ./tester syntax
 ```
