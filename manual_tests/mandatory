@@ -22,3 +22,11 @@ echo "hi" | cat | cat | cat | cat | cat | cat | cat
 ps -a
 
 echo - "" "" "" "" -
+
+
+unset USER
+
+unset PATH
+/usr/bin/ls
+
+unset PWD

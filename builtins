@@ -29,10 +29,14 @@ export HELLO="123 A-"
 export hello world
 export HELLO-=123
 export GHOST=123 | env | grep GHOST
+export =
+export 123
 unset
-unset HOME
 unset HELLO
 unset HELLO1 HELLO2
+unset HOME
+unset PATH
+unset SHELL
 cd $PWD
 cd 123123
 exit 123
