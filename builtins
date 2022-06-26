@@ -28,7 +28,6 @@ export HELLO=123 A
 export HELLO="123 A-"
 export hello world
 export HELLO-=123
-export GHOST=123 | env | grep GHOST
 export =
 export 123
 unset
@@ -39,6 +38,7 @@ unset PATH
 unset SHELL
 cd $PWD
 cd 123123
+cd .. hello
 exit 123
 exit 298
 exit -1000
@@ -49,3 +49,6 @@ exit 9223372036854775808
 exit -9223372036854775807
 exit -9223372036854775808
 exit -9223372036854775809
+exit +10
+exit "+10"
+exit +"10"
