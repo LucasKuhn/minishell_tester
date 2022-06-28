@@ -39,6 +39,13 @@ The tester does **not** test everything. We added some suggestions of manual tes
 - [mandatory](manual_tests/mandatory)
 - [not_mandatory](manual_tests/not_mandatory)
 
+# Bonus 
+We also have tests for the `wildcards` part of the bonus: 
+```
+./tester wildcards 
+```
+* Make sure your executable is called `minishell_bonus`
+
 # Extra tests
 We decided to leave out some tests from the mandatory part, things like syntax errors and OS specific code.
 <p align="center">
