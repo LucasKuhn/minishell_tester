@@ -2,3 +2,4 @@ unset HELLO=
 unset  A-
 export HELLO=123 A- WORLD=456
 unset  HELLO A- WORLD
+export UNO=1 DOS-2 TRES=3 || env | grep TRES
