@@ -30,3 +30,8 @@ unset PATH
 /usr/bin/ls
 
 unset PWD
+
+
+cd obj ✅ # change the folder (obj has to be a valid folder)
+cd obj hi ✅ # it must not change the folder (obj has to be a valid folder)
+cd # change to home

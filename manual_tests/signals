@@ -34,3 +34,6 @@ ls | ./test_files/loop.out
 #- Ctrl+C ✅
 #- Ctrl+\ ✅
 #- Ctrl+D ✅
+
+hello + Ctrl+C
+# Check that the new line is empty
