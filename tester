@@ -3,7 +3,7 @@
 MINISHELL_PATH="../minishell"
 
 # Run a specific test if the file name was specified
-if [[ $1 && $1 -eq "all" ]]; then
+if [[ $1 ]]; then
 	test_lists=(
 		$1
 	)
@@ -14,6 +14,10 @@ else
 		"redirects"
 		"extras"
 	)
+fi
+
+if [[ $1 == "wildcards"  || $1 == "bonus" ]]; then
+	MINISHELL_PATH="../minishell_bonus"
 fi
 
 BOLD="\e[1m"
@@ -55,7 +59,7 @@ for testfile in ${test_lists[*]}; do
 		rm -rf ./mini_outfiles/*
 		MINI_OUTPUT=$(echo -e "$teste" | $MINISHELL_PATH 2> /dev/null | sed -r "s:\x1B\[[0-9;]*[mK]::g" | grep -v "$PROMPT" | grep -v ^exit$ )
 		MINI_OUTFILES=$(cp ./outfiles/* ./mini_outfiles &>/dev/null)
-		MINI_EXIT_CODE=$(echo -e "$MINISHELL_PATH\n$teste\necho \$?\nexit\n" | $MINISHELL_PATH 2> /dev/null | sed -r "s:\x1B\[[0-9;]*[mK]::g" | grep -v "$PROMPT" | grep -v ^exit$ | tail -n 1)
+		MINI_EXIT_CODE=$(echo -e "$MINISHELL_PATH\n$teste\necho \$?\nexit\n" | bash 2> /dev/null | sed -r "s:\x1B\[[0-9;]*[mK]::g" | grep -v "$PROMPT" | grep -v ^exit$ | tail -n 1)
 		MINI_ERROR_MSG=$(trap "" PIPE && echo "$teste" | $MINISHELL_PATH 2>&1 > /dev/null | grep -o '[^:]*$' )
 
 		rm -rf ./outfiles/*
