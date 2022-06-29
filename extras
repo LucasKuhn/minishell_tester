@@ -6,7 +6,9 @@ $EMPTY echo hi
 ./missing.out
 missing.out
 "aaa"
+test_files
 ./test_files
+/test_files
 minishell.h
 $
 $?
