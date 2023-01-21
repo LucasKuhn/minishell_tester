@@ -1,37 +1,39 @@
-echo -n hello ✅
+# Prints without a new line
+echo -n hello
 
-# change env variable value ✅
+# update env variable value
 export HELLO=123
 export HELLO="beautiful world"
 
-cd obj ✅
+# keep track of OLDPWD
+cd obj
 echo $PWD $OLDPWD
 
-# invalid command + empty input + get exit code ✅
-oi
+# invalid command, followed by empty input, should keep the exit code
+doesntexist
 
 echo $?
 
-#invalid command + empty variable + get exit code ✅
-asd
+#invalid command, followed by empty variable, should clear the exit code
+doesntexist
 $EMPTY
 echo $?
 
-# Check zombie process ✅
+# Check if there isn't a zombie process called `cat`
 echo "hi" | cat | cat | cat | cat | cat | cat | cat
 ps -a
 
-echo - "" "" "" "" -
+# Should skip the empty argument, and print hello after spaces
+echo - "" "  " hello
 
-
+# Neither of these unsets should break the shell, and you should still be able to call `/bin/ls`
 unset USER
-
 unset PATH
-/usr/bin/ls
-
 unset PWD
+/bin/ls
 
+# This should not change the current directory
+cd .. hi
 
-cd obj ✅ # change the folder (obj has to be a valid folder)
-cd obj hi ✅ # it must not change the folder (obj has to be a valid folder)
-cd # change to home
+# Empty `cd` moves to home
+cd

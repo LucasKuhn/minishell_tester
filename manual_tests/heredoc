@@ -27,9 +27,9 @@ cat <minishell.h <<HERE <missing <<DOC | echo oi
 HERE
 DOC
 
-cat << $ ✅
+cat << $
 oi
 $
 
-<< echo oi ✅
+<< echo oi
 echo
