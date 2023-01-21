@@ -18,7 +18,7 @@ Run the `tester` file to run all the tests for the mandatory part of the project
 </p>
 
 # Separate tests
-You can also call `tester` + `test_file` to run only a specific part of the test:
+You can also call `./tester` + `test_file` to run only a specific part of the test:
 ```sh
 ./tester builtins 
 ```
@@ -34,9 +34,9 @@ You can also call `tester` + `test_file` to run only a specific part of the test
 
 # Manual tests 
 The tester does **not** test everything. We added some suggestions of manual test in the [manual_tests](manual_tests) folder
+- [mandatory](manual_tests/mandatory)
 - [heredoc](manual_tests/heredoc)
 - [signals](manual_tests/signals)
-- [mandatory](manual_tests/mandatory)
 - [not_mandatory](manual_tests/not_mandatory)
 
 # Bonus 
