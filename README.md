@@ -1,14 +1,14 @@
 <img width="1728" alt="image" src="https://user-images.githubusercontent.com/26127185/175815870-be78bbd5-d1be-4164-954a-982768c6b147.png">
 
-# Installation 
-Clone the repo **inside** your minishell folder 
+# The SUPER COOL Installation
+Clone the repo **inside** your minishell folder
 ```sh
 cd minishell
 git clone https://github.com/LucasKuhn/minishell_tester.git
 cd minishell_tester
 ```
 
-# How to run 
+# How to run
 Run the `tester` file to run all the tests for the mandatory part of the project
 ```sh
 ./tester
@@ -20,29 +20,29 @@ Run the `tester` file to run all the tests for the mandatory part of the project
 # Separate tests
 You can also call `./tester` + `test_file` to run only a specific part of the test:
 ```sh
-./tester builtins 
+./tester builtins
 ```
 ```sh
-./tester pipes 
+./tester pipes
 ```
 ```sh
-./tester redirects 
+./tester redirects
 ```
 ```sh
-./tester extras 
+./tester extras
 ```
 
-# Manual tests 
+# Manual tests
 The tester does **not** test everything. We added some suggestions of manual test in the [manual_tests](manual_tests) folder
 - [mandatory](manual_tests/mandatory)
 - [heredoc](manual_tests/heredoc)
 - [signals](manual_tests/signals)
 - [not_mandatory](manual_tests/not_mandatory)
 
-# Bonus 
-We also have tests for the `wildcards` part of the bonus: 
+# Bonus
+We also have tests for the `wildcards` part of the bonus:
 ```
-./tester wildcards 
+./tester wildcards
 ```
 * Make sure your executable is called `minishell_bonus`
 
