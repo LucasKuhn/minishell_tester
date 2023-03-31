@@ -20,6 +20,16 @@ if [[ $1 == "wildcards"  || $1 == "bonus" ]]; then
 	MINISHELL_PATH="../minishell_bonus"
 fi
 
+SED_FLAG="-r"
+OS_NAME=$(uname)
+if [[ $OS_NAME == "Darwin" ]]; then
+	PROD_VERSION=$(sw_vers | sed -n '2p' | cut -d':' -f2 | xargs)
+	V_MAJOR=$(echo $PROD_VERSION | cut -d'.' -f1)
+	if [[ $V_MAJOR -le 10 ]]; then
+		SED_FLAG=""
+	fi
+fi
+
 BOLD="\e[1m"
 YELLOW="\033[0;33m"
 GREY="\033[38;5;244m"
@@ -45,7 +55,7 @@ echo "                                                                          
 echo "🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥";
 echo "                                                                                              ";
 
-PROMPT=$(echo -e "\nexit\n" | $MINISHELL_PATH | head -n 1 | sed -r "s:\x1B\[[0-9;]*[mK]::g")
+PROMPT=$(echo -e "\nexit\n" | $MINISHELL_PATH | head -n 1 | sed $SED_FLAG "s:\x1B\[[0-9;]*[mK]::g")
 
 for testfile in ${test_lists[*]}; do
 
@@ -57,9 +67,9 @@ for testfile in ${test_lists[*]}; do
 
 		rm -rf ./outfiles/*
 		rm -rf ./mini_outfiles/*
-		MINI_OUTPUT=$(echo -e "$teste" | $MINISHELL_PATH 2> /dev/null | sed -r "s:\x1B\[[0-9;]*[mK]::g" | grep -vF "$PROMPT" | grep -v ^exit$ )
+		MINI_OUTPUT=$(echo -e "$teste" | $MINISHELL_PATH 2> /dev/null | sed $SED_FLAG "s:\x1B\[[0-9;]*[mK]::g" | grep -vF "$PROMPT" | grep -v ^exit$ )
 		MINI_OUTFILES=$(cp ./outfiles/* ./mini_outfiles &>/dev/null)
-		MINI_EXIT_CODE=$(echo -e "$MINISHELL_PATH\n$teste\necho \$?\nexit\n" | bash 2> /dev/null | sed -r "s:\x1B\[[0-9;]*[mK]::g" | grep -vF "$PROMPT" | grep -v ^exit$ | tail -n 1)
+		MINI_EXIT_CODE=$(echo -e "$MINISHELL_PATH\n$teste\necho \$?\nexit\n" | bash 2> /dev/null | sed $SED_FLAG "s:\x1B\[[0-9;]*[mK]::g" | grep -vF "$PROMPT" | grep -v ^exit$ | tail -n 1)
 		MINI_ERROR_MSG=$(trap "" PIPE && echo "$teste" | $MINISHELL_PATH 2>&1 > /dev/null | grep -o '[^:]*$' )
 
 		rm -rf ./outfiles/*
