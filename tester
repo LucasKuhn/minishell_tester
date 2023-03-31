@@ -20,6 +20,16 @@ if [[ $1 == "wildcards"  || $1 == "bonus" ]]; then
 	MINISHELL_PATH="../minishell_bonus"
 fi
 
+OS_NAME=$(uname)
+SED_FLAG="-r"
+if [[ $OS_NAME == "Darwin" ]]; then
+	PROD_VERSION=$(sw_vers | sed -n '2p' | cut -d':' -f2 | xargs)
+	V_MAJOR=$(echo $PROD_VERSION | cut -d'.' -f1)
+	if [[ $V_MAJOR -le 10 ]]; then
+		SED_FLAG=""
+	fi
+fi
+
 BOLD="\e[1m"
 YELLOW="\033[0;33m"
 GREY="\033[38;5;244m"
