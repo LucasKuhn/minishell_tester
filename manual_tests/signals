@@ -1,39 +1,39 @@
-CTRL+C ✅
-CTRL+D ✅
-CTRL+\ ✅
-CTRL+C, CTRL+C, CTRL+C, exit ✅
-CTRL+C, CTRL+C, CTRL+C, Ctrl+D ✅
+CTRL+C
+CTRL+D
+CTRL+\
+CTRL+C, CTRL+C, CTRL+C, exit
+CTRL+C, CTRL+C, CTRL+C, Ctrl+D
 
 cat | ls # testar dando depois:
-#- Enter ✅
-#- Ctrl+D ✅
-#- Ctrl+\ ✅
-#- Ctrl+C ✅
+#- Enter
+#- Ctrl+D
+#- Ctrl+\
+#- Ctrl+C
 
 grep oi | ls # testar dando depois:
-#- Enter + Ctrl+D ✅
-#- Ctrl+D ✅
-#- "oi" + Enter + Ctrl+D ✅
-#- Ctrl+\ ✅
-#- Ctrl+C ✅
-#- "oi" + Enter + Ctrl+\ ✅
+#- Enter + Ctrl+D
+#- Ctrl+D
+#- "oi" + Enter + Ctrl+D
+#- Ctrl+\
+#- Ctrl+C
+#- "oi" + Enter + Ctrl+\
 
 ./test_files/loop.out # finalizar com:
-#- Ctrl+C ✅
-#- Ctrl+\ ✅  -> workspaces: ^\Quit\n
-#- Ctrl+D ✅  -> não faz nada
+#- Ctrl+C
+#- Ctrl+\  -> workspaces: ^\Quit\n
+#- Ctrl+D  -> não faz nada
 
 ./test_files/loop.out | ls
 # finalizar com:
-#- Ctrl+C ✅
-#- Ctrl+\ ✅
-#- Ctrl+D ✅
+#- Ctrl+C
+#- Ctrl+\
+#- Ctrl+D
 
 ls | ./test_files/loop.out
 # finalizar com:
-#- Ctrl+C ✅
-#- Ctrl+\ ✅
-#- Ctrl+D ✅
+#- Ctrl+C
+#- Ctrl+\
+#- Ctrl+D
 
 hello + Ctrl+C
 # Check that the new line is empty

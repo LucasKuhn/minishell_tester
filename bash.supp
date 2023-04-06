@@ -7,43 +7,11 @@
    ...
 }
 {
-   <Readline>
-   Memcheck:Leak
-   match-leak-kinds: definite
-   ...
-   fun:readline
-   ...
-}
-{
    <Readline/AddHistory>
    Memcheck:Leak
    match-leak-kinds: reachable
    ...
    fun:add_history
-   ...
-}
-{
-   <Readline>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   ...
-   fun:load_history
-   ...
-}
-{
-   <Readline>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   ...
-   fun:yyparse
-   ...
-}
-{
-   <Readline>
-   Memcheck:Leak
-   match-leak-kinds: reachable
-   ...
-   fun:*rl_*
    ...
 }
 {

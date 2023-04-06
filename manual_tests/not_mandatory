@@ -1,27 +1,29 @@
-# test1
-env hello world # -> We need to implement "env with no options or arguments", the output here is optional
+# We need to implement "env with no options or arguments", the output here is optional
+env hello world 
 
-# test2
+# We need to imlement only "cd with only a relative or absolute path"
+cd 
+cd ~
+
+# Empty export isn't set on `env` but is set on `export`
 export hello
 env | grep hello
 export | grep hello
 
-# cd tests
-cd # Not mandatory, we need to imlement only "cd with only a relative or absolute path"
-cd ~
-
+# This shouldn't break
 unset HOME
 cd ~
 
-#extra: variáveis locais
+# Local variables are options
 aa==vv
+echo $aa
 
+# Open pipe waits for input
 ls |
 
-# não precisa ser igual ao bash
+# Undefined
 <<<
 <<<<
 > '
-
-echo oi |    |  < >>
-echo oi |  < >>   |  |
+echo hi |    |  < >>
+echo hi |  < >>   |  |

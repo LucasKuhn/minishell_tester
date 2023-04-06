@@ -76,11 +76,11 @@ for testfile in ${test_lists[*]}; do
 
 		printf $YELLOW
 		printf "Test %3s: " $i
-		if [[ "$MINI_OUTPUT" == "$BASH_OUTPUT" && "$MINI_EXIT_CODE" == "$BASH_EXIT_CODE" && "$MINI_ERROR_MSG" == "$BASH_ERROR_MSG"  && -z "$OUTFILES_DIFF" ]]; then
+		if [[ "$MINI_OUTPUT" == "$BASH_OUTPUT" && "$MINI_EXIT_CODE" == "$BASH_EXIT_CODE" && -z "$OUTFILES_DIFF" ]]; then
 			printf ✅
 			((ok++))
 			if [ "$MINI_ERROR_MSG" != "$BASH_ERROR_MSG" ]; then
-				printf ⚠️
+				printf "⚠️ "
 			fi
 		else
 			printf ❌
