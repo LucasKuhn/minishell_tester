@@ -13,3 +13,9 @@ minishell.h
 $
 $?
 README.md
+exit 9223372036854775807
+exit 9223372036854775808
+exit -9223372036854775807
+exit -9223372036854775808
+exit -9223372036854775809
+export | sort | grep -v SHLVL | grep -v "declare -x _" | grep -v "PS.="
